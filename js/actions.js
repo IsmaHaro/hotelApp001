@@ -75,7 +75,8 @@ var fn = {
 				tel: tel
 			},
 			error: function(e){
-				alert("Error de conexion con AJAX "+e.getMessage());
+				alert("Error de conexion con AJAX ");
+				alert(e);
 			}
 
 		}).done(function( mensaje ){
