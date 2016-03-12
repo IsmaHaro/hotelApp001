@@ -53,7 +53,7 @@ var fn = {
 				throw new Error("El teléfono no es valido");
 			}
 
-			if(tel.length == 10 ){
+			if(tel.length != 10 ){
 				throw new Error("El teléfono debe de tener 10 digitos");
 			}
 
