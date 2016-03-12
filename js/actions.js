@@ -66,6 +66,7 @@ var fn = {
 	},
 
 	enviarRegistro: function(nombre, email, tel, foto){
+		alert(nombre+" "+email+" "+tel);
 		$.ajax({
 			method: "POST",
 			url: "http://carlos.igitsoft.com/apps/test.php",
@@ -76,7 +77,8 @@ var fn = {
 			},
 			error: function(e){
 				alert("Error de conexion con AJAX ");
-				alert(e);
+				var err = eval("(" + xhr.responseText + ")");
+  				alert(err.Message);
 			}
 
 		}).done(function( mensaje ){
