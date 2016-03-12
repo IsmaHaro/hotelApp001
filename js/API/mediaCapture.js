@@ -3,7 +3,7 @@ var mc = {
 	 	var i, path, len;
 	    for (i = 0, len = mediaFiles.length; i < len; i += 1) {
 	        path = mediaFiles[i].fullPath;
-	        $("#fotoTomada").html('<img src="'+path+'">');
+	        $("#fotoTomada").html('<img src="'+path+'" style="width:100%;">');
 
 	        $("#fotoTomada").attr("rel", path);
 	    }

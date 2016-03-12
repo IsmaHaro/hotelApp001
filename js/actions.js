@@ -74,8 +74,8 @@ var fn = {
 				mail: email,
 				tel: tel
 			},
-			error: function(){
-				alert("Error de conexion con AJAX");
+			error: function(e){
+				alert("Error de conexion con AJAX "+e.getMessage());
 			}
 
 		}).done(function( mensaje ){
