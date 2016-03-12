@@ -83,6 +83,7 @@ var fn = {
 			}
 
 		}).done(function( mensaje ){
+			alert("aaaaaaaaa");
 			if( mensaje == 1){
 				ft.transferir(foto);
 
