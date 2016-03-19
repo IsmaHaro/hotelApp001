@@ -77,9 +77,6 @@ var fn = {
 			},
 			error: function(e){
 				alert("Error de conexion con AJAX ");
-				alert(e.responseText);
-				var err = eval("(" + e.responseText + ")");
-  				alert(err.Message);
 			}
 
 		}).done(function( mensaje ){

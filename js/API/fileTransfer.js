@@ -8,9 +8,8 @@ var ft = {
 					window.location.href = "#home";
 				}, "Bienvenido", "Siguiente");
 
-			}else{
-				navigator.notification.alert("Error al subir foto en el servidor");
-			}
+		}else{
+			navigator.notification.alert("Error al subir foto en el servidor");
 		}
 	},
 
