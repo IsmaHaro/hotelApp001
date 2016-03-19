@@ -27,8 +27,10 @@ var fn = {
 		var numHabitaciones  = $("#numHabitaciones").val();
 		var numDias          = $("#numDias").val();
 
+alert("HACIENDO RESERVA");
 		// ENVIAR LOS DATOS DEPENDIENDO SI HAY O NO CONEXION
 		if(ni.estaConectado()){
+alert("ENVIANDO RESERVA");
 			// ENVIAR DATOS AL SERVIDOR
 			fn.enviarReserva(tipoDeHabitacion, numPersonas, numHabitaciones, numDias);
 
@@ -39,7 +41,7 @@ var fn = {
 		// RESETEAR DATOS
 		$("#reserva1 ul[data-role=listview) a").css("background-color", "");
 		$("#reserva1").removeAttr("th");
-		$("#reserva2 select").attr("selectedIndex", 0).selectmenu("refresh", true);
+		$("#reserva2 select").prop("selectedIndex", 0).selectmenu("refresh", true);
 
 		// IR AL HOME
 		window.location.href="#home";
@@ -60,6 +62,7 @@ var fn = {
 			}
 
 		}).done(function(respuesta){
+alert("SERVIDOR RESPONDIO: "+respuesta);
 			if(respuesta == 1){
 				// COLOCAR RESERVA EN EL HISTORIAL
 
