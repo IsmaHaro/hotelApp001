@@ -27,10 +27,8 @@ var fn = {
 		var numHabitaciones  = $("#numHabitaciones").val();
 		var numDias          = $("#numDias").val();
 
-alert("HACIENDO RESERVA");
 		// ENVIAR LOS DATOS DEPENDIENDO SI HAY O NO CONEXION
 		if(ni.estaConectado()){
-alert("ENVIANDO RESERVA");
 			// ENVIAR DATOS AL SERVIDOR
 			fn.enviarReserva(tipoDeHabitacion, numPersonas, numHabitaciones, numDias);
 
@@ -38,11 +36,13 @@ alert("ENVIANDO RESERVA");
 			// GUARDAR DATOS LOCALES
 		}
 
+alert("RESETEANDO DATOS");
 		// RESETEAR DATOS
 		$("#reserva1 ul[data-role=listview) a").css("background-color", "");
 		$("#reserva1").removeAttr("th");
 		$("#reserva2 select").prop("selectedIndex", 0).selectmenu("refresh", true);
 
+alert("CAMBIANDO PANTALLA")
 		// IR AL HOME
 		window.location.href="#home";
 	},
