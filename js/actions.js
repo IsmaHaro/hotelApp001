@@ -12,9 +12,76 @@ var fn = {
 
 		$("#registro div[data-role=footer] a").tap(fn.registrar);
 		$("#registro .ui-content a").tap(fn.tomarFoto);
+		$("#reserva1 ul[data-role=listview] a").tap(fn.SeleccionarTipoHabitacion);
+		$("#reserva1 div[data-role=navbar] .ui-btn-active").tap(fn.reserva1Siguiente);
+		$("#reserva2 div[data-role=navbar] .ui-btn-active").tap(fn.hacerReserva);
 
 		// PONER FECHA
 		fn.ponerFecha();
+	},
+
+	hacerReserva: function(){
+		// OBTENER LOS DATOS DE LA RESERVA
+		var tipoDeHabitacion = $("#reserva1").attr("th");
+		var numPersonas      = $("#numPersonas").val();
+		var numHabitaciones  = $("#numHabitaciones").val();
+		var numDias          = $("#numDias").val();
+
+		// ENVIAR LOS DATOS DEPENDIENDO SI HAY O NO CONEXION
+		if(ni.estaConectado()){
+			// ENVIAR DATOS AL SERVIDOR
+			fn.enviarReserva(tipoDeHabitacion, numPersonas, numHabitaciones, numDias);
+
+		}else{
+			// GUARDAR DATOS LOCALES
+		}
+
+		// RESETEAR DATOS
+		$("#reserva1 ul[data-role=listview) a").css("background-color", "");
+		$("#reserva1").removeAttr("th");
+		$("#reserva2 select").attr("selectedIndex", 0).selectmenu("refresh", true);
+
+		// IR AL HOME
+		window.location.href="#home";
+	},
+
+	enviarReserva: function(tipoDeHabitacion, numPersonas, numHabitaciones, numDias){
+		$.ajax({
+			method: "POST",
+			url: "http://carlos.igitsoft.com/apps/test.php",
+			data: {
+				tipo: tipoDeHabitacion,
+				habitaciones: numHabitaciones,
+				personas: numPersonas,
+				dias: numDias
+			},
+			error: function(){
+				alert("Error de conexion con el servidor");
+			}
+
+		}).done(function(respuesta){
+			if(respuesta == 1){
+				// COLOCAR RESERVA EN EL HISTORIAL
+
+			}else{
+				alert("Error al guardar reserva en el servidor");
+			}
+		});
+	},
+
+	reserva1Siguiente: function(){
+		if($("#reserva1").attr("th") != undefined){
+			window.location.href = "#reserva2";
+
+		}else{
+			alert("Es necesario seleccionar un tipo de habitación");
+		}
+	},
+
+	SeleccionarTipoHabitacion: function(){
+		$("#reserva1 ul[data-role=listview] a").css("background-color", "");
+		$(this).css("background-color", "#38C");
+		$("#reserva1").attr("th", $(this).text());
 	},
 
 	estaRegistrado: function(){
@@ -80,9 +147,7 @@ var fn = {
 			}
 
 		}).done(function( mensaje ){
-alert("aaaaaaaaa");
-			if( mensaje == 1){
-alert("bbbbbbbbb")				
+			if( mensaje == 1){			
 				ft.transferir(foto);
 
 			}else{

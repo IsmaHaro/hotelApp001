@@ -19,7 +19,6 @@ var ft = {
 
 	transferir: function(path){
 		// OPCIONES DE ENVIO
-alert("Enviando foto");
 		var options      = new FileUploadOptions();
 		options.fileKey  = "foto";
 		options.fileName = "miFoto";
