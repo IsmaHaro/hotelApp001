@@ -38,11 +38,11 @@ var fn = {
 
 alert("RESETEANDO DATOS");
 		// RESETEAR DATOS
-		$("#reserva1 ul[data-role=listview) a").css("background-color", "");
+		$("#reserva1 ul[data-role=listview] a").css("background-color", "");
 		$("#reserva1").removeAttr("th");
 		$("#reserva2 select").prop("selectedIndex", 0).selectmenu("refresh", true);
 
-alert("CAMBIANDO PANTALLA")
+alert("CAMBIANDO PANTALLA");
 		// IR AL HOME
 		window.location.href="#home";
 	},
