@@ -39,7 +39,7 @@ var almacen = {
 	},
 
 	leerHistorial: function(tx){
-		tx.executeSql('SELECT * FROM historial', [], almacen.mostrarResultadosHistorial);
+		tx.executeSql('SELECT * FROM historial', [], almacen.mostrarResultadosHistorial, null);
 	},
 
 	mostrarResultadosHistorial: function(tx, res){
