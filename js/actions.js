@@ -16,9 +16,14 @@ var fn = {
 		$("#reserva1 div[data-role=navbar] .ui-btn-active").tap(fn.reserva1Siguiente);
 		$("#reserva2 div[data-role=navbar] .ui-btn-active").tap(fn.hacerReserva);
 		$("#boton-historial").tap(fn.mostrarHistorial);
+		$("#boton-reservasp").tap(fn.mostrarReservasP);
 
 		// PONER FECHA
 		fn.ponerFecha();
+	},
+
+	mostrarReservasP: function(){
+		almacen.cargarDatosReservasP();
 	},
 
 	mostrarHistorial: function(){
@@ -39,6 +44,7 @@ var fn = {
 
 		}else{
 			// GUARDAR DATOS LOCALES
+			almacen.guardarReservaLocal(tipoDeHabitacion, numPersonas, numHabitaciones, numDias);
 		}
 
 		// RESETEAR DATOS

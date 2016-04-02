@@ -1,0 +1,10 @@
+.informacion,
+.informacion th,
+.informacion td,
+.informacion tr{
+	font-size: 14px;
+	border: 1px solid black;
+	padding: 2px 3px;
+	text-align: center;
+	border-collapse: collapse;
+}

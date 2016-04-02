@@ -34,18 +34,15 @@ var almacen = {
 	},
 
 	cargarDatosHistorial: function(){
-alert("Conectando a la BD");
 		almacen.db = almacen.conectarDB();
 		almacen.db.transaction(almacen.leerHistorial, almacen.error);
 	},
 
 	leerHistorial: function(tx){
-alert("SELECCIONANDO DE LA BD");
 		tx.executeSql('SELECT * FROM historial', [], almacen.mostrarResultadosHistorial, null);
 	},
 
 	mostrarResultadosHistorial: function(tx, res){
-alert("CARGANDO DATOS");
 		var cantidad = res.rows.length;
 		var resultado = '<tr><td colspan="4">No hay reservas en el historial</td></tr>';
 
@@ -63,5 +60,51 @@ alert("CARGANDO DATOS");
 		}
 
 		$("#listaHistorial").html(resultado);
+	},
+
+	guardarReservaLocal: function(th, np, nh, nd){
+		almacen.db              = almacen.conectarDB();
+		almacen.tipoHabitacion  = th;
+		almacen.numPersonas     = np;
+		almacen.numHabitaciones = nh;
+		almacen.numDias         = nd;
+		almacen.db.transaction(almacen.tablaReservasPendientes, almacen.error, almacen.exito);
+	},
+
+	tablaReservasPendientes: function(tx){
+		// CREAR TABLA DE RESERVAS_PENDIENTES
+		tx.executeSql('CREATE TABLE IF NOT EXISTS reservas_pendientes (id INTEGER PRIMARY KEY, tipoh, nump, numh, numd)');
+
+		// INSERTAR LOS DATOS
+		tx.executeSql('INSERT INTO reservas_pendientes (tipoh, nump, numh, numd) VALUES ("'+almacen.tipoHabitacion+'", '+almacen.numPersonas+', '+almacen.numHabitaciones+', '+almacen.numDias+')');
+	},
+
+	cargarDatosReservasP: function(){
+		almacen.db = almacen.conectarDB();
+		almacen.db.transaction(almacen.leerReservasP, almacen.error);
+	},
+
+	leerReservasP: function(tx){
+		tx.executeSql('SELECT * FROM reservas_pendientes', [], almacen.mostrarResultadosReservasP, null);
+	},
+
+	mostrarResultadosReservasP: function(tx, res){
+		var cantidad = res.rows.length;
+		var resultado = '<tr><td colspan="4">No hay reservas pendientes</td></tr>';
+
+		if(cantidad > 0){
+			// SI HAY RESERVAS PENDIENTES
+			var resultado = '';
+
+			for( var i = 0; i < cantidad; i++){
+				var th = res.rows.item(i).tipoh;
+				var np = res.rows.item(i).nump;
+				var nh = res.rows.item(i).numh;
+				var nd = res.rows.item(i).numd;
+				resultado += '<tr><td>'+th+'</td><td>'+np+'</td><td>'+nh+'</td><td>'+nd+'</td></tr>';
+			}
+		}
+
+		$("#listaReservasP").html(resultado);
 	}
 };
