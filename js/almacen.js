@@ -39,6 +39,10 @@ var almacen = {
 	},
 
 	leerHistorial: function(tx){
+		// CREAR TABLA DE HISTORIAL SI NO EXISTE
+		tx.executeSql('CREATE TABLE IF NOT EXISTS historial (id INTEGER PRIMARY KEY, tipoh, nump, numh, numd)');
+
+		// LEER DEL HISTORIAL
 		tx.executeSql('SELECT * FROM historial', [], almacen.mostrarResultadosHistorial, null);
 	},
 
@@ -85,6 +89,10 @@ var almacen = {
 	},
 
 	leerReservasP: function(tx){
+		// CREAR TABLA DE RESERVAS_PENDIENTES
+		tx.executeSql('CREATE TABLE IF NOT EXISTS reservas_pendientes (id INTEGER PRIMARY KEY, tipoh, nump, numh, numd)');
+
+		// LEER TABLA DE RESERVAS_PENDIENTES		
 		tx.executeSql('SELECT * FROM reservas_pendientes', [], almacen.mostrarResultadosReservasP, null);
 	},
 
@@ -106,5 +114,34 @@ var almacen = {
 		}
 
 		$("#listaReservasP").html(resultado);
+	},
+
+	sincronizarPendientes: function(){
+		almacen.db = almacen.conectarDB();
+		almacen.db.transaction(almacen.leerPendientes, almacen.error);
+	},
+
+	leerPendientes: function(){
+		// CREAR TABLA DE RESERVAS_PENDIENTES SI AUN NO EXISTE
+		tx.executeSql('CREATE TABLE IF NOT EXISTS reservas_pendientes (id INTEGER PRIMARY KEY, tipoh, nump, numh, numd)');
+
+		// LEEMOS LA TABLA DE RESERVAS_PENDIENTES
+		tx.executeSql('SELECT * FROM reservas_pendientes', [], almacen.procesarPendientes);
+	},
+
+	procesarPendientes: function(tx, res){
+		var cantidad = res.rows.length;
+
+		if(cantidad > 0){
+			for( var i = 0; i < cantidad; i++){
+				var th = res.rows.item(i).tipoh;
+				var np = res.rows.item(i).nump;
+				var nh = res.rows.item(i).numh;
+				var nd = res.rows.item(i).numd;
+
+				fn.enviarReserva(th, np, nh, nd);
+				tx.executeSql('DELETE FROM reservas_pendientes WHERE id = "'+res.rows.item(i).id+'"');
+			}
+		}
 	}
 };

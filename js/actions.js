@@ -18,8 +18,16 @@ var fn = {
 		$("#boton-historial").tap(fn.mostrarHistorial);
 		$("#boton-reservasp").tap(fn.mostrarReservasP);
 
+		document.addEventListener("online", fn.sincronizarReservasPendientes, false);
+
 		// PONER FECHA
 		fn.ponerFecha();
+	},
+
+	sincronizarReservasPendientes: function(){
+		alert("Se sincronizo las reservas con el servidor");
+		navigator.vibrate(1000);
+		almacen.sincronizarPendientes();
 	},
 
 	mostrarReservasP: function(){
