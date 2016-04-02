@@ -15,9 +15,14 @@ var fn = {
 		$("#reserva1 ul[data-role=listview] a").tap(fn.SeleccionarTipoHabitacion);
 		$("#reserva1 div[data-role=navbar] .ui-btn-active").tap(fn.reserva1Siguiente);
 		$("#reserva2 div[data-role=navbar] .ui-btn-active").tap(fn.hacerReserva);
+		$("#boton-historial").tap(fn.mostrarHistorial);
 
 		// PONER FECHA
 		fn.ponerFecha();
+	},
+
+	mostrarHistorial: function(){
+		almacen.cargarDatosHistorial();
 	},
 
 	hacerReserva: function(){
@@ -36,13 +41,11 @@ var fn = {
 			// GUARDAR DATOS LOCALES
 		}
 
-alert("RESETEANDO DATOS");
 		// RESETEAR DATOS
 		$("#reserva1 ul[data-role=listview] a").css("background-color", "");
 		$("#reserva1").removeAttr("th");
 		$("#reserva2 select").prop("selectedIndex", 0).selectmenu("refresh", true);
 
-alert("CAMBIANDO PANTALLA");
 		// IR AL HOME
 		window.location.href="#home";
 	},
@@ -62,9 +65,9 @@ alert("CAMBIANDO PANTALLA");
 			}
 
 		}).done(function(respuesta){
-alert("SERVIDOR RESPONDIO: "+respuesta);
 			if(respuesta == 1){
 				// COLOCAR RESERVA EN EL HISTORIAL
+				almacen.guardarReservasHistorial(tipoDeHabitacion, numPersonas, numHabitaciones, numDias);
 
 			}else{
 				alert("Error al guardar reserva en el servidor");

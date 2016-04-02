@@ -16,7 +16,11 @@
 		<div class="ui-content">
 			<ul data-role="listview">
 				<li><a href="#reserva1">Nueva Reserva</a></li>
-				<li><a href="#">Historial de Reservas</a></li>
+				<li>
+					<a href="#historial" id="boton-historial">
+						Historial de Reservas
+					</a>
+				</li>
 				<li><a href="#">Reservas pendientes</a></li>
 				<li><a href="#">Ubicación</a></li>
 				<li><a href="#">Galería</a></li>
@@ -138,6 +142,27 @@
 		</div>
 	</div>
 
+	<div data-role="page" id="historial">
+		<div data-role="header">
+			<h1>Historial</h1>
+			<a href="#" data-rel="back">Atrás</a>
+		</div>
+		<div class="ui-content">
+			<table>
+				<thead>
+					<tr>
+						<th>Tipo de habitación</th>
+						<th>Número de personas</th>
+						<th>Número de habitaciones</th>
+						<th>Número de días</th>
+					</tr>
+				</thead>
+				<tbody id="listaHistorial">
+				</tbody>
+			</table>
+		</div>
+	</div>
+
 	<script type="text/javascript" src="phonegap.js"></script>
 	
 	<script type="text/javascript" src="js/jquery-1.12.1.min.js">
@@ -146,6 +171,7 @@
 	</script>
 
 	<script type="text/javascript" src="js/actions.js"></script>
+	<script type="text/javascript" src="js/almacen.js"></script>
 	<script type="text/javascript" src="js/API/mediaCapture.js"></script>
 	<script type="text/javascript" src="js/API/fileTransfer.js"></script>
 	<script type="text/javascript" src="js/API/network-information.js">
