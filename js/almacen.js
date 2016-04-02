@@ -34,15 +34,18 @@ var almacen = {
 	},
 
 	cargarDatosHistorial: function(){
+alert("Conectando a la BD");
 		almacen.db = almacen.conectarDB();
 		almacen.db.transaction(almacen.leerHistorial, almacen.error);
 	},
 
 	leerHistorial: function(tx){
+alert("SELECCIONANDO DE LA BD");
 		tx.executeSql('SELECT * FROM historial', [], almacen.mostrarResultadosHistorial, null);
 	},
 
 	mostrarResultadosHistorial: function(tx, res){
+alert("CARGANDO DATOS");
 		var cantidad = res.rows.length;
 		var resultado = '<tr><td colspan="4">No hay reservas en el historial</td></tr>';
 
