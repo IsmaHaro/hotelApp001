@@ -53,7 +53,7 @@ alert("CARGANDO DATOS");
 			// SI HAY RESERVAS EN EL HISTORIAL
 			var resultado = '';
 
-			for( var i = 0; i < cantidaad; i++){
+			for( var i = 0; i < cantidad; i++){
 				var th = res.rows.item(i).tipoh;
 				var np = res.rows.item(i).nump;
 				var nh = res.rows.item(i).numh;
