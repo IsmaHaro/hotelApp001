@@ -121,7 +121,7 @@ var almacen = {
 		almacen.db.transaction(almacen.leerPendientes, almacen.error);
 	},
 
-	leerPendientes: function(){
+	leerPendientes: function(tx){
 		// CREAR TABLA DE RESERVAS_PENDIENTES SI AUN NO EXISTE
 		tx.executeSql('CREATE TABLE IF NOT EXISTS reservas_pendientes (id INTEGER PRIMARY KEY, tipoh, nump, numh, numd)');
 
