@@ -7,6 +7,7 @@ var geo = {
 	},
 
 	exito: function(position){
+		alert("EXITO");
 		geo.latitud = position.coords.latitude;
 		geo.longitud = position.coords.longitude;
 

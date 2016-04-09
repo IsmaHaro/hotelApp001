@@ -26,7 +26,7 @@ var fn = {
 	},
 
 	mostrarUbicacion: function(){
-		$.getScript('https://maps.googleapis.com/maps/api/js?key=AIzaSyDPU93nlhOAgjd_0HauISD8ydznJ0R2fzI&callback=mapa');
+		$.getScript('https://maps.googleapis.com/maps/api/js?key=AIzaSyCKrZkh24ZjiYdD0BS445a5NjNEtn6oBeg&callback=mapa');
 	},
 
 	sincronizarReservasPendientes: function(){
