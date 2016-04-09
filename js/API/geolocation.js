@@ -26,7 +26,8 @@ alert("position: "+position.coords.latitude+" "+position.coords.longitude);
 	},
 
 	ponerMapa: function(){
-		navigator.geolocation.getCurrentPoistion(geo.exito, geo.error);
+		alert("Obteniendo coordenadas");
+		navigator.geolocation.getCurrentPosition(geo.exito, geo.error);
 	}
 
 };
