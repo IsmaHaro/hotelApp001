@@ -7,7 +7,7 @@ var fn = {
 
 		// CHECAR SI USUARIO ESTA REGISTRADO
 		if(!fn.estaRegistrado()){
-			window.location.href="#registro";
+		//	window.location.href="#registro";
 		}
 
 		$("#registro div[data-role=footer] a").tap(fn.registrar);
@@ -35,11 +35,11 @@ var fn = {
 
 		for(var i = 1; i <= 8 ; i++ ){
 			if(impar){
-				$("#gallery").append('<div class="ui-block-a"><img src="../img/galeria/'+i+'.jpg"></div>');
+				$("#gallery").append('<div class="ui-block-a"><img src="img/galeria/'+i+'.jpg"></div>');
 				impar = false;
 
 			}else{
-				$("#gallery").append('<div class="ui-block-b"><img src="../img/galeria/'+i+'.jpg"></div>');
+				$("#gallery").append('<div class="ui-block-b"><img src="img/galeria/'+i+'.jpg"></div>');
 				impar = true;
 			}			
 		}
@@ -216,8 +216,8 @@ var fn = {
 
 
 // EJECUTAR EN PHONEGAP
-$(fn.deviceready);                                              
+//$(fn.deviceready);                                              
 
 // EJECUTAR EN NAVEGADOR
 //fn.init();
-//$(fn.init);
+$(fn.init);
