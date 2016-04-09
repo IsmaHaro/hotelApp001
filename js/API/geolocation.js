@@ -7,7 +7,6 @@ var geo = {
 	},
 
 	exito: function(position){
-		alert("EXITO");
 		geo.latitud = position.coords.latitude;
 		geo.longitud = position.coords.longitude;
 
@@ -18,7 +17,7 @@ var geo = {
 				lat: geo.latitud,
 				lng: geo.longitud
 			},
-			mapTypeId: google.maps.mapTypeId.ROADMAP
+			mapTypeId: google.maps.MapTypeId.ROADMAP
 		};
 
 		// CREAR EL MAPA
