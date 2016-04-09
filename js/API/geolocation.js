@@ -3,7 +3,7 @@ var geo = {
 	longitud: null,
 
 	error: function(error){
-		alert("Error: "+error.message);
+		alert("Error: "+error.message+" Codigo: "+error.code);
 	},
 
 	exito: function(position){
