@@ -7,6 +7,7 @@ var geo = {
 	},
 
 	exito: function(position){
+		try{
 		geo.latitud = position.coords.latitude;
 		geo.longitud = position.coords.longitude;
 
@@ -28,7 +29,7 @@ var geo = {
 		// CREAR EL MAPA
 		var map = new google.maps.Map(document.getElementById("canvas"), options);
 
-		var directionsDisplay = new google.maps.DirectionsRender({
+		var directionsDisplay = new google.maps.DirectionsRenderer({
 			map: map
 		});
 
@@ -51,6 +52,10 @@ var geo = {
 				directionsDisplay.setDirections(response);
 			}
 		});
+
+		}catch(error){
+			alert(error);
+		}
 	},
 
 	ponerMapa: function(){
