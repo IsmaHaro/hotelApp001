@@ -27,7 +27,9 @@
 						Reservas pendientes
 					</a>
 				</li>
-				<li><a href="#">Ubicación</a></li>
+				<li>
+					<a href="#ubicacion" id="boton-ubicacion">Ubicación</a>
+				</li>
 				<li><a href="#">Galería</a></li>
 				<li><a href="#">Términos y Condiciones</a></li>
 			</ul>
@@ -189,6 +191,25 @@
 		</div>
 	</div>
 
+	<div id="ubicacion" data-role="page">
+		<div data-role="header">
+			<h1>Ubicación</h1>
+			<a href="#" data-rel="back">Atrás</a>
+		</div>
+		<div class="mapa">
+			<div id="canvas">
+			</div>
+		</div>
+	</div>	
+
+	<!-- AIzaSyAKbm_B29KO988JnKd-h7Zls-ifEmx1_co -->
+
+	<script type="text/javascript">
+		function mapa(){
+			geo.ponerMapa();
+		}
+	</script>
+
 	<script type="text/javascript" src="phonegap.js"></script>
 	
 	<script type="text/javascript" src="js/jquery-1.12.1.min.js">
@@ -201,6 +222,8 @@
 	<script type="text/javascript" src="js/API/mediaCapture.js"></script>
 	<script type="text/javascript" src="js/API/fileTransfer.js"></script>
 	<script type="text/javascript" src="js/API/network-information.js">
+	</script>
+	<script type="text/javascript" src="js/API/geolocation.js">
 	</script>
 </body>
 </html>

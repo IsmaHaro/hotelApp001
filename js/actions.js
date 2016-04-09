@@ -17,11 +17,16 @@ var fn = {
 		$("#reserva2 div[data-role=navbar] .ui-btn-active").tap(fn.hacerReserva);
 		$("#boton-historial").tap(fn.mostrarHistorial);
 		$("#boton-reservasp").tap(fn.mostrarReservasP);
+		$("#boton-ubicacion").tap(fn.mostrarUbicacion);
 
 		document.addEventListener("online", fn.sincronizarReservasPendientes, false);
 
 		// PONER FECHA
 		fn.ponerFecha();
+	},
+
+	mostrarUbicacion: function(){
+		$.getScript('https://maps.googleapis.com/maps/api/js?key=AIzaSyDPU93nlhOAgjd_0HauISD8ydznJ0R2fzI&callback=mapa');
 	},
 
 	sincronizarReservasPendientes: function(){
