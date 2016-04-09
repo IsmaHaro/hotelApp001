@@ -18,11 +18,31 @@ var fn = {
 		$("#boton-historial").tap(fn.mostrarHistorial);
 		$("#boton-reservasp").tap(fn.mostrarReservasP);
 		$("#boton-ubicacion").tap(fn.mostrarUbicacion);
+		$("#boton-galeria").tap(fn.llenarGaleria);
 
 		document.addEventListener("online", fn.sincronizarReservasPendientes, false);
 
 		// PONER FECHA
 		fn.ponerFecha();
+	},
+
+	llenarGaleria: function(){
+		// CELDAS EN jquery mobile
+		// <div class="ui-block-a"></div>
+		// <div class="ui-block-b"></div>
+
+		var impar = true;
+
+		for(var i = 1; i <= 8 ; i++ ){
+			if(impar){
+				$("#gallery").append('<div class="ui-block-a"><img src="../img/galeria/'+i+'.jpg"></div>');
+				impar = false;
+
+			}else{
+				$("#gallery").append('<div class="ui-block-b"><img src="../img/galeria/'+i+'.jpg"></div>');
+				impar = true;
+			}			
+		}
 	},
 
 	mostrarUbicacion: function(){
