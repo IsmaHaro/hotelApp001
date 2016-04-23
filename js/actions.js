@@ -80,14 +80,20 @@ var fn = {
 	},
 
 	mostrarReservasP: function(){
+		$.mobile.loading("show");
 		almacen.cargarDatosReservasP();
+		$.mobile.loading("hide");
 	},
 
 	mostrarHistorial: function(){
+		$.mobile.loading("show");
 		almacen.cargarDatosHistorial();
+		$.mobile.loading("hide");
 	},
 
 	hacerReserva: function(){
+		$.mobile.loading("show");
+
 		// OBTENER LOS DATOS DE LA RESERVA
 		var tipoDeHabitacion = $("#reserva1").attr("th");
 		var numPersonas      = $("#numPersonas").val();
@@ -108,6 +114,8 @@ var fn = {
 		$("#reserva1 ul[data-role=listview] a").css("background-color", "");
 		$("#reserva1").removeAttr("th");
 		$("#reserva2 select").prop("selectedIndex", 0).selectmenu("refresh", true);
+
+		$.mobile.loading("hide");
 
 		// IR AL HOME
 		window.location.href="#home";
@@ -166,6 +174,8 @@ var fn = {
 	},
 
 	registrar: function(){
+		$.mobile.loading("show");
+
 		// OBTENER LOS DATOS DEL FORMULARIO
 		var nombre = $("#regNom").val();
 		var email  = $("#regEmail").val();
@@ -195,8 +205,10 @@ var fn = {
 
 			// ENVIAR EL REGISTRO AL SERVIDOR
 			fn.enviarRegistro(nombre, email, tel, foto);
+			$.mobile.loading("hide");
 
 		}catch(error){
+			$.mobile.loading("hide");
 			alert(error);
 		}
 	},
