@@ -15,7 +15,7 @@ var almacen = {
 		alert("Error: "+error.message);
 	},
 	exito: function(){
-		alert("Exito");
+		//alert("Exito");
 	},
 	guardarReservasHistorial: function(th, np, nh, nd){
 		almacen.db              = almacen.conectarDB();

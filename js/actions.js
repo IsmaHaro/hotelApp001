@@ -70,6 +70,7 @@ var fn = {
 	},
 
 	mostrarUbicacion: function(){
+		$.mobile.loading("show");
 		$.getScript('https://maps.googleapis.com/maps/api/js?key=AIzaSyCKrZkh24ZjiYdD0BS445a5NjNEtn6oBeg&callback=mapa');
 	},
 
@@ -82,13 +83,13 @@ var fn = {
 	mostrarReservasP: function(){
 		$.mobile.loading("show");
 		almacen.cargarDatosReservasP();
-		$.mobile.loading("hide");
+		//$.mobile.loading("hide");
 	},
 
 	mostrarHistorial: function(){
 		$.mobile.loading("show");
 		almacen.cargarDatosHistorial();
-		$.mobile.loading("hide");
+		//$.mobile.loading("hide");
 	},
 
 	hacerReserva: function(){
