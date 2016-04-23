@@ -7,7 +7,7 @@ var fn = {
 
 		// CHECAR SI USUARIO ESTA REGISTRADO
 		if(!fn.estaRegistrado()){
-		//	window.location.href="#registro";
+			window.location.href="#registro";
 		}
 
 		$("#registro div[data-role=footer] a").tap(fn.registrar);
@@ -240,8 +240,8 @@ var fn = {
 
 
 // EJECUTAR EN PHONEGAP
-//$(fn.deviceready);                                              
+$(fn.deviceready);                                              
 
 // EJECUTAR EN NAVEGADOR
 //fn.init();
-$(fn.init);
+//$(fn.init);
