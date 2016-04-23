@@ -21,3 +21,16 @@
 .foto-galeria{
 	width: 100%;
 }
+
+.ui-popup-container, .ui-popup {
+    height: auto;
+    width: 95%;
+    position: absolute;
+    top: 30px !important;
+    left:0;
+}
+
+.ui-popup-screen.in{
+	background: black;
+	opacity: 0.6 !important;
+}

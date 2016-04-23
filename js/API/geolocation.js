@@ -14,7 +14,7 @@ var geo = {
 		var hotel = {
 			lat: 19.046583,
 			lng: -98.207966
-		}
+		};
 
 		// OPCIONES DEL MAPA
 		var options = {

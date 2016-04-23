@@ -20,10 +20,24 @@ var fn = {
 		$("#boton-ubicacion").tap(fn.mostrarUbicacion);
 		$("#boton-galeria").tap(fn.llenarGaleria);
 
+		$(document).on('pagebeforeshow', '#galeria',function (e){
+			$("#gallery .foto-galeria").off('tap').on('tap', fn.mostrarDescripcionFoto);
+		});
+
 		document.addEventListener("online", fn.sincronizarReservasPendientes, false);
 
 		// PONER FECHA
 		fn.ponerFecha();
+	},
+
+	mostrarDescripcionFoto: function(){
+		var descripcion = $(this).attr('desc');
+		var fuente = $(this).attr('src')
+		$("#fotoDescripcion").empty();
+		$("#fotoDescripcion").append('<img class="foto-galeria" src="' + fuente + '" desc="' + descripcion +'" >\
+									  <p>'+ descripcion +'</p> ');
+		$("#popupFoto").popup("open");
+		
 	},
 
 	llenarGaleria: function(){
@@ -31,16 +45,25 @@ var fn = {
 		// <div class="ui-block-a"></div>
 		// <div class="ui-block-b"></div>
 
+		var arreglo_descripciones = ['descripcion 1',
+		                             'descripcion 2',
+		                             'descripcion 3',
+		                             'descripcion 4',
+		                             'descripcion 5',
+		                             'descripcion 6',
+		                             'descripcion 7',
+		                             'descripcion 8'];
+
 		$("#gallery").html('');
 		var impar = true;
 
 		for(var i = 1; i <= 8 ; i++ ){
 			if(impar){
-				$("#gallery").append('<div class="ui-block-a"><img class="foto-galeria" src="img/galeria/'+i+'.jpg"></div>');
+				$("#gallery").append('<div class="ui-block-a"><img class="foto-galeria" src="img/galeria/'+i+'.jpg" desc="'+arreglo_descripciones[i-1]+'"></div>');
 				impar = false;
 
 			}else{
-				$("#gallery").append('<div class="ui-block-b"><img class="foto-galeria" src="img/galeria/'+i+'.jpg"></div>');
+				$("#gallery").append('<div class="ui-block-b"><img class="foto-galeria" src="img/galeria/'+i+'.jpg" desc="'+arreglo_descripciones[i-1]+'"></div>');
 				impar = true;
 			}			
 		}
