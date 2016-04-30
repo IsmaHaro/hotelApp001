@@ -19,7 +19,7 @@ var fn = {
 		$("#boton-reservasp").tap(fn.mostrarReservasP);
 		$("#boton-ubicacion").tap(fn.mostrarUbicacion);
 		$("#boton-galeria").tap(fn.llenarGaleria);
-		$("#boton-sesion").tap(fn.cerrarSesion);
+		$("#boton-cerrar-sesion").tap(fn.cerrarSesion);
 
 		$(document).on('pagebeforeshow', '#galeria',function (e){
 			$("#gallery .foto-galeria").off('tap').on('tap', fn.mostrarDescripcionFoto);
@@ -37,11 +37,10 @@ var fn = {
 
 		try{
 			navigator.notification.alert("Cerrar sesión", function(){
-				navigator.notification.beep(1);
 				window.location.href = "#registro";
 			}, "Sesión finalizada con éxito", "Aceptar");
 
-		} catch(error){
+		}catch(error){
 			alert("Sesión finalizada con éxito");
 			console.log("Error: " + error);
 		}
