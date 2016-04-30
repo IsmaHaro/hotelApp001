@@ -99,7 +99,7 @@ alert("Transaccion usuario");
 					
 			}, "Error", "Aceptar");
 		}
-	}
+	},
 
 	cargarDatosHistorial: function(){
 		almacen.db = almacen.conectarDB();
