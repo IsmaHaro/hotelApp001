@@ -43,6 +43,7 @@ var almacen = {
 	},
 
 	tablaUsuarios: function(tx){
+alert("Transaccion usuario");
 		// CREAR TABLA DE USUARIOS
 		tx.executeSql('CREATE TABLE IF NOT EXISTS usuarios (id INTEGER PRIMARY KEY, correo, password)');
 

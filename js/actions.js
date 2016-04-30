@@ -251,7 +251,6 @@ var fn = {
 
 			// ENVIAR EL REGISTRO AL SERVIDOR
 			fn.enviarRegistro(nombre, email, tel, foto);
-			almacen.guardarUsuarios(nombre, contrasenia);
 			$.mobile.loading("hide");
 
 		}catch(error){
