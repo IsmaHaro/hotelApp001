@@ -33,7 +33,7 @@ var fn = {
 
 	cerrarSesion: function(){
 		// AQUI ELIMINAMOS LA VARIABLE USER DEL LOCAL STORAGE
-		window.localStorage.setItem('user', null);
+		window.localStorage.removeItem('user');
 
 		try{
 			navigator.notification.alert("Cerrar sesión", function(){
