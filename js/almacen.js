@@ -8,6 +8,8 @@ var almacen = {
 	numPersonas: null,
 	numHabitaciones: null,
 	numDias: null,
+	correo: null,
+	password: null,
 	conectarDB: function(){
 		return window.openDatabase("hotelApp", "1.0", "Hotel App", 200000);
 	},
@@ -31,6 +33,21 @@ var almacen = {
 
 		// INSERTAR LOS DATOS
 		tx.executeSql('INSERT INTO historial (tipoh, nump, numh, numd) VALUES ("'+almacen.tipoHabitacion+'", '+almacen.numPersonas+', '+almacen.numHabitaciones+', '+almacen.numDias+')');
+	},
+
+	guardarUsuarios: function(correo, password){
+		almacen.db       = almacen.conectarDB();
+		almacen.correo   = correo;
+		almacen.password = password;
+		almacen.db.transaction(almacen.tablaUsuarios, almacen.error, almacen.exito);
+	},
+
+	tablaUsuarios: function(tx){
+		// CREAR TABLA DE USUARIOS
+		tx.executeSql('CREATE TABLE IF NOT EXISTS usuarios (id INTEGER PRIMARY KEY, correo, password)');
+
+		// INSERTAR LOS DATOS
+		tx.executeSql('INSERT INTO usuarios (correo, password) VALUES ("'+almacen.correo+'", "'+almacen.password+'")');
 	},
 
 	cargarDatosHistorial: function(){
