@@ -50,6 +50,56 @@ var almacen = {
 		tx.executeSql('INSERT INTO usuarios (correo, password) VALUES ("'+almacen.correo+'", "'+almacen.password+'")');
 	},
 
+	comprobarExistenciaUsuario: function(mail, password){
+		almacen.db				= almacen.conectarDB();
+		almacen.correo			= mail;
+		almacen.password		= password;
+
+		almacen.db.transaction(almacen.leerUsuarios, almacen.error, almacen.exito);
+	},
+
+	leerUsuarios: function(tx){
+		//Crear tabla de historial
+		tx.executeSql('CREATE TABLE IF NOT EXISTS usuarios (id INTEGER PRIMARY KEY, correo, password)');
+		//leer tabla historial
+		tx.executeSql('SELECT * FROM usuarios', [], almacen.validarUsuario);
+	},
+
+	validarUsuario:function(tx, res){
+		var cantidad = res.rows.length;
+		var coincidencias = 0;
+
+		if(cantidad > 0){
+			for(var i = 0; i < cantidad; i++){
+				var mail = res.rows.item(i).correo;
+				var pass = res.rows.item(i).password;
+
+				if(mail == almacen.correo){
+					if(pass == alamacen.password){
+						coincidencias = 1;
+						break;
+					}
+				}
+			}
+			if(coincidencias > 0){
+				navigator.notification.alert("Sesión iniciada correctamente", function(){
+					navigator.vibrate(1000);
+					navigator.notification.beep(1);
+					window.localStorage.setItem("user", almacen.correo);
+					window.location.href="#home";
+				}, "Bienvenido", "Siguiente");
+			} else {
+				navigator.notification.alert("Usuario o contraseña no válidos", function(){
+					
+				}, "Error", "Aceptar");
+			}
+		} else {
+			navigator.notification.alert("Usuario o contraseña no válidos", function(){
+					
+			}, "Error", "Aceptar");
+		}
+	}
+
 	cargarDatosHistorial: function(){
 		almacen.db = almacen.conectarDB();
 		almacen.db.transaction(almacen.leerHistorial, almacen.error);

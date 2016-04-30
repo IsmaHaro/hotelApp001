@@ -20,6 +20,7 @@ var fn = {
 		$("#boton-ubicacion").tap(fn.mostrarUbicacion);
 		$("#boton-galeria").tap(fn.llenarGaleria);
 		$("#boton-cerrar-sesion").tap(fn.cerrarSesion);
+		$("#boton-iniciar-sesion").tap(fn.iniciarSesion);
 
 		$(document).on('pagebeforeshow', '#galeria',function (e){
 			$("#gallery .foto-galeria").off('tap').on('tap', fn.mostrarDescripcionFoto);
@@ -30,6 +31,33 @@ var fn = {
 		// PONER FECHA
 		fn.ponerFecha();
 	},
+
+	iniciarSesion: function(){
+		var mail = document.getElementById("usrEmail").value;
+		var password = document.getElementById("usrPass").value;
+
+		if(mail == "" && password == ""){
+			alert("Error: No se proporciono usuario ni contraseña");
+		}
+		else if(mail == ""){
+			alert("Debe introducir email");
+		}
+		else if(password == ""){
+			alert("Debe introducir contraseña");
+		}
+		else{
+			try{
+				almacen.comprobarExistenciaUsuario(mail, password);
+
+			} catch(error){
+				console.log("Base de datos no disponible por el momento. Error: " + error);
+				alert("Base de datos no disponible por el momento. Error: " + error);
+				window.localStorage.setItem('user', mail);
+				window.location.href="#home";
+			}
+		}
+	},
+
 
 	cerrarSesion: function(){
 		// AQUI ELIMINAMOS LA VARIABLE USER DEL LOCAL STORAGE
@@ -222,6 +250,7 @@ var fn = {
 
 			// ENVIAR EL REGISTRO AL SERVIDOR
 			fn.enviarRegistro(nombre, email, tel, foto);
+			almacen.guardarUsuarios(nombre, contraseña);
 			$.mobile.loading("hide");
 
 		}catch(error){
