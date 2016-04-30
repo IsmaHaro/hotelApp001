@@ -225,6 +225,7 @@ var fn = {
 		var nombre = $("#regNom").val();
 		var email  = $("#regEmail").val();
 		var tel    = $("#regTel").val();
+		var contraseña = $("#pass").val();
 		var foto   = $("#fotoTomada").attr("rel");
 
 		try{
