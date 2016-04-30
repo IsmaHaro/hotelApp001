@@ -225,7 +225,7 @@ var fn = {
 		var nombre = $("#regNom").val();
 		var email  = $("#regEmail").val();
 		var tel    = $("#regTel").val();
-		var contraseña = $("#pass").val();
+		var contrasenia = $("#pass").val();
 		var foto   = $("#fotoTomada").attr("rel");
 
 		try{
@@ -251,7 +251,7 @@ var fn = {
 
 			// ENVIAR EL REGISTRO AL SERVIDOR
 			fn.enviarRegistro(nombre, email, tel, foto);
-			almacen.guardarUsuarios(nombre, contraseña);
+			almacen.guardarUsuarios(nombre, contrasenia);
 			$.mobile.loading("hide");
 
 		}catch(error){

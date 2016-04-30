@@ -62,7 +62,7 @@ var almacen = {
 		//Crear tabla de historial
 		tx.executeSql('CREATE TABLE IF NOT EXISTS usuarios (id INTEGER PRIMARY KEY, correo, password)');
 		//leer tabla historial
-		tx.executeSql('SELECT * FROM usuarios', [], almacen.validarUsuario);
+		tx.executeSql('SELECT * FROM usuarios', [], almacen.validarUsuario, null);
 	},
 
 	validarUsuario:function(tx, res){
