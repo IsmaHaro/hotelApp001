@@ -10,7 +10,7 @@ var fn = {
 			window.location.href="#registro";
 		}
 
-		$("#registro div[data-role=footer] a").tap(fn.registrar);
+		$("#registrar").tap(fn.registrar);
 		$("#registro .ui-content a").tap(fn.tomarFoto);
 		$("#reserva1 ul[data-role=listview] a").tap(fn.SeleccionarTipoHabitacion);
 		$("#reserva1 div[data-role=navbar] .ui-btn-active").tap(fn.reserva1Siguiente);
@@ -19,6 +19,7 @@ var fn = {
 		$("#boton-reservasp").tap(fn.mostrarReservasP);
 		$("#boton-ubicacion").tap(fn.mostrarUbicacion);
 		$("#boton-galeria").tap(fn.llenarGaleria);
+		$("#boton-sesion").tap(fn.cerrarSesion);
 
 		$(document).on('pagebeforeshow', '#galeria',function (e){
 			$("#gallery .foto-galeria").off('tap').on('tap', fn.mostrarDescripcionFoto);
@@ -28,6 +29,22 @@ var fn = {
 
 		// PONER FECHA
 		fn.ponerFecha();
+	},
+
+	cerrarSesion: function(){
+		// AQUI ELIMINAMOS LA VARIABLE USER DEL LOCAL STORAGE
+		window.localStorage.setItem('user', null);
+
+		try{
+			navigator.notification.alert("Cerrar sesión", function(){
+				navigator.notification.beep(1);
+				window.location.href = "#registro";
+			}, "Sesión finalizada con éxito", "Aceptar");
+
+		} catch(error){
+			alert("Sesión finalizada con éxito");
+			console.log("Error: " + error);
+		}
 	},
 
 	mostrarDescripcionFoto: function(){
@@ -83,13 +100,13 @@ var fn = {
 	mostrarReservasP: function(){
 		$.mobile.loading("show");
 		almacen.cargarDatosReservasP();
-		//$.mobile.loading("hide");
+		$.mobile.loading("hide");
 	},
 
 	mostrarHistorial: function(){
 		$.mobile.loading("show");
 		almacen.cargarDatosHistorial();
-		//$.mobile.loading("hide");
+		$.mobile.loading("hide");
 	},
 
 	hacerReserva: function(){
